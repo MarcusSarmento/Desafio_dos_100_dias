@@ -1,11 +1,11 @@
-import {usestate} from "react";
+import {useState} from "react";
 
-function Condicional(){
+function CondicionalComponent(){
     const[show, setShow] = useState(false);
 
     return(
         <div>
-            <button onclick={() => setShow(!show)}>
+            <button onClick={() => setShow(!show)}>
                 {show ? "Esconder" : "Mostrar"} Mensagem
             </button>
 
@@ -15,3 +15,5 @@ function Condicional(){
 
     
 }
+
+export default CondicionalComponent;
