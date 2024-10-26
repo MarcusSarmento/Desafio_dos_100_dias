@@ -1,13 +1,13 @@
 const sqlite3 = require('sqlite3')
 const cors = require('cors')
-const express =  require('express')
+const express = require('express')
 
 
 const app = express()
 app.use(express.json())
 app.use(cors())
 
-const db =new sqlite3.Database('./database.db')
+const db = new sqlite3.Database('./database.db')
 
 // criando a tabela do banco de dados
 db.serialize(() => {
@@ -26,7 +26,7 @@ const users = {
 //inserindo e cadastrando usurarios no banco de dados
 db.run(`insert into users(id, name, email) values (?, ?, ?)`,
     [users.id, users.name, users.email], (err) => {
-        if (err){
+        if (err) {
             console.log(err)
         } else {
             console.log('Usuário criado com sucesso')
