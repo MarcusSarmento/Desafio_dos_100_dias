@@ -21,11 +21,7 @@ header{
     color: #fff;
 }
 
-footer{
-    justify-content: end;
-    align-items:end;
-    color: #fff;
-}
+
 
 
 .img-slider{
@@ -84,6 +80,7 @@ footer{
     position: absolute;
     display: flex;
     margin-top:100px ;
+    top: 130%;
     bottom: 30px;
     left:50% ;
     transform: translate(-50px);
