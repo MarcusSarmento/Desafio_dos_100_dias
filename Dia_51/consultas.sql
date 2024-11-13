@@ -201,6 +201,43 @@ UNLOCK TABLES;
 
 -- Dump completed on 2020-09-17 13:02:14
 
+/*
+/* Crie e exiba uma visão que recupere o nome e o sobrenome dos funcionários e a quantidade total de horas que eles trabalham. 
+Traga apenas os funcionários que trabalham mais de 35 horas*/
+create view total_horas as 
+select pnome, unome, sum(horas)
+from funcionario inner join trabalha_em on cpf = fcpf
+group by cpf
+having sum(horas) > 35;
+
+select * from total_horas;
+
+/* Crie e exiba uma visão que recupere o nome e o sobrenome dos funcionários e o nome dos projetos que eles trabalham */
+create view funcs as
+select f.pnome, f.unome, p.projnome
+from funcionario f
+inner join trabalha_em on trabalha_em.fcpf = f.cpf
+inner join projeto p on trabalha_em.pnr = p.projnumero
+order by pnome asc;
+
+/* Crie e exiba uma visão que recupere o nome de todos os funcionários juntamente com a quantidade de dependentes que eles possuem.
+Caso ele não tenha nenhum dependente, exiba 0 na contagem */
+create view num_dependentes as 
+select pnome, unome, count(fcpf) as num_dependentes
+from funcionario left join dependente on cpf = fcpf
+group by cpf;
+
+/* Traga os funcionários que possuem o maior número de dependentes */
+select max(num_dependentes)
+from num_dependentes;
+
+/* Traga o nome dos funcs com o maior número de dependentes */
+select pnome, unome, count(fcpf) as num_dependentes
+from funcionario left join dependente on cpf = fcpf
+group by cpf
+having num_dependentes = (select max(num_dependentes) from num_dependentes);
+ */
+
 -- Recuperar o primeiro nome e o salário em que o salário do funcionário é maior pou igual a 30000
 select pnome, salario
 from funcionario
