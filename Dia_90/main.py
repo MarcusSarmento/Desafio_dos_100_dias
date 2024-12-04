@@ -1,10 +1,10 @@
-#Projeto Lista de Tarefas Flask - Parte 4
+#Projeto Lista de Tarefas Flask - Conclusão
 
 from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__, template_folder="templates")
 
-tarefas = [{"tarefas":"Tarefa exemplo", "oncluido": False}]
+tarefas = [{"tarefa":"Tarefa exemplo", "concluido": False}]
 
 @app.route("/")
 def index():
@@ -13,7 +13,7 @@ def index():
 @app.route("/add", methods=["POST"])
 def add():
     tarefa = request.form['tarefa']
-    tarefas.append({"tarefas":tarefa, "concluido":False})
+    tarefas.append({"tarefa":tarefa, "concluido":False})
     return redirect (url_for("index"))
 
 @app.route("/edit/<int:index>", methods=["GET", "POST"])

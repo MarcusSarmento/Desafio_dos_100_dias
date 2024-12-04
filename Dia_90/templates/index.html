@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de tarefas</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+    
+        h1 {
+            text-align: center;
+            color: #555;
+        }
+    
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+    
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+    
+        li input[type="checkbox"] {
+            margin-right: 10px;
+        }
+    
+        li span {
+            flex-grow: 1;
+        }
+    
+        li a {
+            margin-left: 10px;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+    
+        li a:hover {
+            color: #0056b3;
+        }
+    
+        form {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    
+        form input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            flex-grow: 1;
+            max-width: 400px;
+        }
+    
+        form button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 0 6px 5px 0;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+    
+        form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Minhas tarefas</h1>
+    <ul>
+        {% for tarefa in tarefas %}
+            <li>
+                <input type="checkbox" name="concluido" {% if tarefa['concluido'] %} checked {% endif %} disabled onchange="this.form.submit">
+                <span {% if tarefa['concluido'] %} style="text-decoration: line-through;" {% endif %}>{{ tarefa['tarefa'] }}</span>
+                <a href="{{ url_for('check', index= loop.index0) }}">Concluido</a>
+                <a href="{{ url_for('edit', index= loop.index0) }}">Editar</a>
+                <a href="{{ url_for('delete', index= loop.index0) }}">Deletar</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <form action="{{url_for('add')}}" method="post">
+        <input type="text" name="tarefa">
+        <button type="submit">Adicionar tarefas</button>
+    </form>
+
+</body>
+</html>
