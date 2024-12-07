@@ -8,7 +8,7 @@ layout = [
     [sg.Text('Usuário'), sg.Input(key='usuario')], #Linha
     [sg.Text('Senha'), sg.Input(key='senha', password_char='*')],
     [sg.Checkbox('Salvar')],
-    [sg.Button('Entar')]
+    [sg.Button('Entrar')]
 ]
 
 #janela
