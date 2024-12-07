@@ -7,7 +7,7 @@ sg.theme('Reddit')
 layout = [
     [sg.Text('Usuário'), sg.Input(key='usuario')], #Linha
     [sg.Text('Senha'), sg.Input(key='senha', password_char='*')],
-    [sg.Checkbox('Salvar')],
+    [sg.Checkbox('Salvar', key='salvar')],
     [sg.Button('Entrar')]
 ]
 
@@ -22,4 +22,6 @@ while True:
 
     if eventos == 'Entrar':
         if valores['usuario'] == 'Fernando' and valores['senha'] == '1234':
-            print('Você logou no sistema!!!')
+            sg.popup("Você logou no sistema!!!", title="Sucesso")  # Exibindo feedback na interface
+        else:
+            sg.popup('Usuário ou senha incorretos!', title="Erro")
