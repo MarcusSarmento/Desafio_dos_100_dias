@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Navbar from "../Components/Navbar"
 import NewsBoard from "../Components/NewsBoard"
-import NewsItem from "../Components/NewsItem"
+
 
 //Your API key is: 1e46e467732846b5beae2f6bcdcae7ee
 
